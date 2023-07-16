@@ -5,4 +5,4 @@
 ## First-Time Setup
 
 1. add depenedencies
-   `npm install` inside my-app folder 
+   `npm install`
