@@ -1,7 +1,21 @@
+import "./Dashboard.css";
 import React from 'react';
 
 export default function Dashboard() {
   return(
-    <h2>Dashboard</h2>
+    <>
+      <h2>Dashboard</h2>
+      <table>
+        <tr>
+          <th>Website</th>
+          <th>Password</th>
+        </tr>
+        <tr>
+          <td>Sample Data</td>
+          <td>Sample Data</td>
+        </tr>
+      </table>
+      <button>+</button>
+    </>
   );
 }

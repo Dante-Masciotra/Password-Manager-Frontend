@@ -20,7 +20,8 @@ function Login() {
 					placeholder="Password"
 				/>
 				<br />
-				<input className="login-button" type="submit" value="Submit" />
+				<input className="login-button" type="submit" value="Submit" /><br/>
+				<a href="http://localhost:3000/dashboard">Temp button to go to dashboard</a>.
 			</form>
 			<p>
 				Don't have an account? Register{" "}
