@@ -14,7 +14,7 @@ const usePost = (url, body) => {
 			},
 			[url]
 		);
-		setData(res.json());
+		setData(res);
 	});
-	return data;
+	return data; // this returns a response object; use json() on the returned value if you don't need other parts of the object
 };
