@@ -18,3 +18,5 @@ const usePost = (url, body) => {
 	});
 	return data; // this returns a response object; use json() on the returned value if you don't need other parts of the object
 };
+
+export default usePost;
