@@ -1,5 +1,4 @@
 import "./Register.css";
-import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 	return (
@@ -23,7 +22,7 @@ const Register = () => {
 					placeholder="Password"
 				/>
 				<br />
-				<input className="login-button" type="submit" value="Submit" />
+				<input className="register-button" type="submit" value="Submit" />
 			</form>
 		</>
 	);
