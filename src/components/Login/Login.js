@@ -26,6 +26,8 @@ function Login() {
 			});
 			const data = await res.json();
 			setMessage(data.message);
+			localStorage.setItem("refresh",data.refresh);
+			localStorage.setItem("token",data.token);
 			if (res.ok) {
 				setMessage("");
 				navigate("/");
