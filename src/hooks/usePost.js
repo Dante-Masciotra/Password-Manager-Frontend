@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const usePost = (url, body) => {
 	const [data, setData] = useState();
-	useEffect(async () => {
+	const httpPost = async () => {
 		const res = await fetch(
 			url,
 			{
@@ -15,7 +15,10 @@ const usePost = (url, body) => {
 			[url]
 		);
 		setData(res);
-	});
+	};
+	useEffect(() => {
+		httpPost();
+	}, []);
 	return data; // this returns a response object; use json() on the returned value if you don't need other parts of the object
 };
 
