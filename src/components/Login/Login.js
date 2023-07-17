@@ -35,9 +35,9 @@ function Login() {
 		}
 	}
 	return (
-		<>
-			<form className="Login-container" onSubmit={submitForm}>
-				<label for="username">Username:</label>
+		<>	
+			<div className="image"><img src={ require("./logo-white.png") } alt=""></img></div>
+			<form className="login-container" onSubmit={submitForm}>
 				<input
 					type="text"
 					id="username"
@@ -46,7 +46,6 @@ function Login() {
 					onChange={e => setUsername(e.target.value)}
 				/>
 				<br />
-				<label for="password">Password:</label>
 				<input
 					type="password"
 					id="password"
