@@ -23,7 +23,7 @@ const Register = () => {
 				},
 				body: JSON.stringify(obj),
 			});
-			const data = res.json();
+			const data = await res.json();
 			setMessage(data.message);
 			if (res.ok) {
 				setMessage("");
