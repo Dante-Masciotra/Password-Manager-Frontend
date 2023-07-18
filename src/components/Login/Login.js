@@ -38,33 +38,38 @@ function Login() {
 	}
 	return (
 		<>	
-			<div className="image"><img src={ require("./logo-white.png") } alt=""></img></div>
-			<form className="login-container" onSubmit={submitForm}>
-				<input
-					type="text"
-					id="username"
-					name="username"
-					placeholder="Username"
-					onChange={e => setUsername(e.target.value)}
-				/>
-				<br />
-				<input
-					type="password"
-					id="password"
-					name="password"
-					placeholder="Password"
-					onChange={e => setPassword(e.target.value)}
-				/>
-				<br />
-				<input className="login-button" type="submit" value="Submit" /><br/>
-				<a href="http://localhost:3000/dashboard">Temp button to go to dashboard</a>.
-			</form>
+			<div className="login-wrapper">
+				<div className="login-container">
+					<img src={ require("./logo-black.png") } alt=""></img>
+					<form onSubmit={submitForm}>
+							<input
+								type="text"
+								id="username"
+								name="username"
+								placeholder="Username"
+								onChange={e => setUsername(e.target.value)}
+							/>
+							<br />
+							<input
+								type="password"
+								id="password"
+								name="password"
+								placeholder="Password"
+								onChange={e => setPassword(e.target.value)}
+							/>
+							<br />
+							<input className="login-button" type="submit" value="Submit" /><br/>
+							<a href="http://localhost:3000/dashboard">Temp button to go to dashboard</a>.
+					</form>
+				</div>
+				<div className="register">
+					<p>
+						Don't have an account? 
+					</p>
+					<a href="http://localhost:3000/register">Sign Up</a>
+				</div>
+			</div>
 			<div>{message && <p>{message}</p>}</div>
-			<p>
-				Don't have an account? Register{" "}
-				<a href="http://localhost:3000/register">here</a>.
-				{/* TODO: replace with more permanent solution */}
-			</p>
 		</>
 	);
 }
