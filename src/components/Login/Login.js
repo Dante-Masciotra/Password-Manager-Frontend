@@ -38,9 +38,12 @@ function Login() {
 	}
 	return (
 		<>	
-			<div className="login-wrapper">
-				<div className="login-container">
-					<img src={ require("./logo-black.png") } alt=""></img>
+			<div className="main-wrapper">
+				<div className="main-container">
+					<div className="main-title">
+						<img src={ require("./logo-black.png") } alt="" />
+						<h1>LOGIN</h1>
+					</div>
 					<form onSubmit={submitForm}>
 							<input
 								type="text"
@@ -57,8 +60,9 @@ function Login() {
 								placeholder="Password"
 								onChange={e => setPassword(e.target.value)}
 							/>
+							<div className="main-error">{message && <p>{message}</p>}</div>
+							<input className="main-button" type="submit" value="Login" />
 							<br />
-							<input className="login-button" type="submit" value="Submit" /><br/>
 							<a href="http://localhost:3000/dashboard">Temp button to go to dashboard</a>.
 					</form>
 				</div>
@@ -69,7 +73,6 @@ function Login() {
 					<a href="http://localhost:3000/register">Sign Up</a>
 				</div>
 			</div>
-			<div>{message && <p>{message}</p>}</div>
 		</>
 	);
 }

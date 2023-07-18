@@ -2,7 +2,9 @@
     box-sizing: border-box;
 }
 
-.login-wrapper {
+/* ------------- Wrapper/Container ------------- */
+
+.main-wrapper {
     font-family: 'Space Grotesk', sans-serif;
     display: flex;
     flex-direction: column;
@@ -11,27 +13,20 @@
     height: 98vh;
 }
 
-.login-container {
+.main-container {
     background: white;
     text-align: center;
     border-radius: 25px;
-    width: 30%;
+    width: 35%;
     padding: 2%;
     color: #282C34;
     margin: 0 auto;
     box-shadow: 10px 10px;
-    transition: all .2s ease-in-out; 
 }
 
-.login-container img {
-    max-width: 30%;
-    max-height: 30%;
-    width: auto;
-    height: auto;
-    margin: 0 auto;
-}
+/* ------------- Form Elements ------------- */
 
-.login-container input {
+.main-container input {
     margin-bottom: 5%;
     padding: 3%;
     border-radius: 25px;
@@ -40,17 +35,16 @@
     transition: all .2s ease-in-out; 
 }
 
-.login-container input:first-child {
+.main-container input:first-child {
     margin-top: 5%;
 }
 
-.login-container input:focus  {
+.main-container input:focus  {
     transform: scale(1.1);
     border: solid 1px black;
-    /* box-shadow: 3px 3px; */
 }
 
-.login-button {
+.main-button {
     font-size: 100%;
     background-color: #282C34;
     border-color: #282C34 !important;
@@ -61,11 +55,44 @@
     transition: all .2s ease-in-out; 
 }
 
-.login-button:hover {
+.main-button:hover {
     cursor: pointer;
     transform: scale(1.1) rotate(2deg);
     background: #3b414e;
     border-color: #3b414e !important;
+}
+
+/* ------------- Title ------------- */
+
+.main-title {
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.main-title img {
+    display: inline;
+    max-width: 20%;
+    max-height: 20%;
+    width: auto;
+    height: auto;
+}
+
+.main-title h1 {
+    font-size: 300%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Outfit', sans-serif;
+}
+
+/* ------------- Error ------------- */
+
+.main-error p {
+    font-family: 'Open Sans', sans-serif;
+    color: red;
+    margin: 0 0 5% 0;
 }
 
 .register {
@@ -74,6 +101,7 @@
     color: white;
     margin-top: 2%;
 }
+
 .register p {
     display: inline;
     margin: 0;
@@ -95,8 +123,4 @@
     border-color: #3b414e !important;
 }
 
-/* @media screen and (max-width: 750px) {
-    
-} */
-
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Outfit:wght@700&family=Space+Grotesk&display=swap');

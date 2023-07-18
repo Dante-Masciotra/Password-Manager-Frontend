@@ -35,36 +35,47 @@ const Register = () => {
 	};
 	return (
 		<>
-			<form classname="register-container" onSubmit={submitForm}>
-				<label for="email">Email:</label>
-				<input
-					type="email"
-					id="email"
-					name="email"
-					placeholder="Email"
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<label for="username">Username:</label>
-				<input
-					type="text"
-					id="username"
-					name="username"
-					placeholder="Username"
-					onChange={(e) => setUsername(e.target.value)}
-				/>
-				<br />
-				<label for="password">Password:</label>
-				<input
-					type="password"
-					id="password"
-					name="password"
-					placeholder="Password"
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-				<br />
-				<input className="register-button" type="submit" value="Submit" />
-			</form>
-			<div>{message && <p>{message}</p>}</div>
+			<div className="main-wrapper">
+				<div className="main-container">
+					<div className="main-title">
+						<img src={ require("./logo-black.png") } alt="" />
+						<h1>REGISTER</h1>
+					</div>
+					<form onSubmit={submitForm}>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="Email"
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+						<br />
+						<input
+							type="text"
+							id="username"
+							name="username"
+							placeholder="Username"
+							onChange={(e) => setUsername(e.target.value)}
+						/>
+						<br />
+						<input
+							type="password"
+							id="password"
+							name="password"
+							placeholder="Password"
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+						<div className="main-error">{message && <p>{message}</p>}</div>
+						<input className="main-button" type="submit" value="Register" />
+					</form>
+				</div>
+				<div className="register">
+					<p>
+						Already have an account?
+					</p>
+					<a href="http://localhost:3000">Login</a>
+				</div>
+			</div>
 		</>
 	);
 };
