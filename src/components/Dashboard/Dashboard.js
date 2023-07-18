@@ -15,7 +15,7 @@ export default function Dashboard() {
           <td>Sample Data</td>
         </tr>
       </table>
-      <button>+</button>
+      <button><a href="http://localhost:3000/AddPassword"> +</a></button>
     </>
   );
 }
