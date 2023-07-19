@@ -18,3 +18,43 @@ export const isExpired = (token) => {
 	const currentTime = Math.floor(Date.now() / 1000);
 	return decode.exp < currentTime;
 };
+
+export const authenticatePage = async (token, refresh) => {
+	const res = await fetch("http://127.0.0.1:5000/me", {
+		method: "GET",
+		headers: {
+			"content-type": "application/json",
+			"x-access-token": token,
+		},
+	});
+	if (res.ok) {
+		return true;
+	} else {
+		if (await refreshTokens(refresh)) {
+			return true;
+		}
+	}
+	return false;
+};
+
+export const refreshTokens = async (refreshToken) => {
+	try {
+		const res = await fetch("http://127.0.0.1:5000/refresh", {
+			method: "GET",
+			headers: {
+				"content-type": "application/json",
+				"x-refresh-token": refreshToken,
+			},
+		});
+		const data = await res.json();
+		if (res.ok) {
+			localStorage.setItem("refresh", data.refresh);
+			localStorage.setItem("token", data.token);
+			return true;
+		}
+		return false;
+	} catch (e) {
+		console.log(e);
+		return false;
+	}
+};
