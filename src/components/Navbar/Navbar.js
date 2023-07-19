@@ -1,23 +1,23 @@
 import "./Navbar.css";
-import React from 'react'
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ username }) => {
 	const navigate = useNavigate();
 
-    const logout = () => {
-        localStorage.clear();
+	const logout = () => {
+		localStorage.clear();
 		navigate("/");
-      }
+	};
 
-  return (
-    <>
-    <div className='NavWrapper'>
-        <h2>Hello Username</h2>
-        <button onClick={logout}>Log Out</button>
-    </div>
-    </>
-  );
-}
+	return (
+		<>
+			<div className="NavWrapper">
+				<h2>Hello {username}</h2>
+				<button onClick={logout}>Log Out</button>
+			</div>
+		</>
+	);
+};
 
-export default Navbar
+export default Navbar;
