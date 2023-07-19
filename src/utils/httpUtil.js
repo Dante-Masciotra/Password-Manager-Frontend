@@ -1,9 +1,13 @@
+import { refreshTokens, isExpired } from "./token";
 export const httpGet = async (url) => {
 	const res = await fetch(url);
 	return res;
 };
 
 export const authHttpGet = async (url, token) => {
+	if (isExpired(token)) {
+		await refreshTokens(localStorage.getItem("refresh"));
+	}
 	const res = await fetch(url, {
 		method: "GET",
 		headers: {
@@ -26,6 +30,9 @@ export const httpPost = async (url, body) => {
 };
 
 export const authHttpPost = async (url, token, body) => {
+	if (isExpired(token)) {
+		await refreshTokens(localStorage.getItem("refresh"));
+	}
 	const res = await fetch(url, {
 		method: "POST",
 		headers: {

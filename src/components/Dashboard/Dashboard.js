@@ -33,7 +33,7 @@ export default function Dashboard() {
 		return () => {
 			window.removeEventListener("storage", handleStorageChange);
 		};
-	}, []);
+	}, [navigate]);
 	if (!authorized)
 		return (
 			<>
