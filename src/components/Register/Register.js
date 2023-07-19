@@ -1,6 +1,7 @@
 import "./Register.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { httpPost } from "../../utils/httpUtil";
 
 const Register = () => {
 	const [email, setEmail] = useState("");
@@ -16,13 +17,7 @@ const Register = () => {
 			password: password,
 		};
 		try {
-			const res = await fetch("http://127.0.0.1:5000/register", {
-				method: "POST",
-				headers: {
-					"content-type": "application/json",
-				},
-				body: JSON.stringify(obj),
-			});
+			const res = await httpPost("http://127.0.0.1:5000/register", obj);
 			const data = await res.json();
 			setMessage(data.message);
 			if (res.ok) {
@@ -38,7 +33,7 @@ const Register = () => {
 			<div className="main-wrapper">
 				<div className="main-container">
 					<div className="main-title">
-						<img src={ require("./logo-black.png") } alt="" />
+						<img src={require("./logo-black.png")} alt="" />
 						<h1>REGISTER</h1>
 					</div>
 					<form onSubmit={submitForm}>
@@ -70,9 +65,7 @@ const Register = () => {
 					</form>
 				</div>
 				<div className="register">
-					<p>
-						Already have an account?
-					</p>
+					<p>Already have an account?</p>
 					<a href="http://localhost:3000">Login</a>
 				</div>
 			</div>

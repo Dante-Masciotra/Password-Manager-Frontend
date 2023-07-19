@@ -1,3 +1,5 @@
+import { authHttpGet } from "./httpUtil";
+
 const parseJwt = (token) => {
 	const base64Url = token.split(".")[1];
 	const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -20,13 +22,7 @@ export const isExpired = (token) => {
 };
 
 export const authenticate = async (token, refresh) => {
-	const res = await fetch("http://127.0.0.1:5000/authenticate", {
-		method: "GET",
-		headers: {
-			"content-type": "application/json",
-			"x-access-token": token,
-		},
-	});
+	const res = await authHttpGet("http://127.0.0.1:5000/authenticate", token);
 	if (res.ok) {
 		return true;
 	} else {
