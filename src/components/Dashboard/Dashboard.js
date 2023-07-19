@@ -2,6 +2,7 @@ import "./Dashboard.css";
 import React, { useState, useEffect } from "react";
 import { authenticatePage } from "../../helper/token";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
 export default function Dashboard() {
 	const [authorized, setAuthorized] = useState(false);
@@ -39,16 +40,19 @@ export default function Dashboard() {
 		);
 	return (
 		<>
+    <Navbar />
 			<h2>Dashboard</h2>
 			<table>
-				<tr>
-					<th>Website</th>
-					<th>Password</th>
-				</tr>
-				<tr>
-					<td>Sample Data</td>
-					<td>Sample Data</td>
-				</tr>
+        <tbody>
+          <tr>
+            <th>Website</th>
+            <th>Password</th>
+          </tr>
+          <tr>
+            <td>Sample Data</td>
+            <td>Sample Data</td>
+          </tr>
+        </tbody>
 			</table>
 			<button>
 				<a href="http://localhost:3000/AddPassword"> +</a>
