@@ -19,7 +19,7 @@ export const isExpired = (token) => {
 	return decode.exp < currentTime;
 };
 
-export const authenticatePage = async (token, refresh) => {
+export const authenticate = async (token, refresh) => {
 	const res = await fetch("http://127.0.0.1:5000/authenticate", {
 		method: "GET",
 		headers: {

@@ -1,6 +1,6 @@
 import "./Dashboard.css";
 import React, { useState, useEffect } from "react";
-import { authenticatePage } from "../../helper/token";
+import { authenticate } from "../../helper/token";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
@@ -10,7 +10,7 @@ export default function Dashboard() {
 	useEffect(() => {
 		const checkAuthorization = async () => {
 			if (
-				await authenticatePage(
+				await authenticate(
 					localStorage.getItem("token"),
 					localStorage.getItem("refresh")
 				)
