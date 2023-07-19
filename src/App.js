@@ -7,11 +7,6 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import AddPassword from "./components/AddPassword/AddPassword";
 
 function App() {
-	// const [token, setToken] = useState();
-	// if (!token) {
-	// 	return <Login setToken={setToken} />;
-	// }
-
 	return (
 		<div className="App">
 			<div className="wrapper">
