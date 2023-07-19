@@ -1,21 +1,23 @@
 import "./Dashboard.css";
 import React, { useState, useEffect } from "react";
-import { authenticate } from "../../utils/token";
+import retrieveUser from "../../utils/retrieveUser";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 
 export default function Dashboard() {
 	const [authorized, setAuthorized] = useState(false);
+	const [userData, setUserData] = useState({});
 	const navigate = useNavigate();
 	useEffect(() => {
 		const checkAuthorization = async () => {
-			if (
-				await authenticate(
-					localStorage.getItem("token"),
-					localStorage.getItem("refresh")
-				)
-			) {
+			const payload = await retrieveUser(
+				localStorage.getItem("token"),
+				localStorage.getItem("refresh")
+			);
+			if (payload) {
 				setAuthorized(true);
+				setUserData(payload);
+				console.log(payload);
 			} else {
 				setAuthorized(false);
 				navigate("/");
@@ -40,7 +42,7 @@ export default function Dashboard() {
 		);
 	return (
 		<>
-			<Navbar />
+			<Navbar username={userData.username} />
 			<h2>Dashboard</h2>
 			<table>
 				<tbody>
