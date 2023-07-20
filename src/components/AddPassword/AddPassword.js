@@ -27,7 +27,7 @@ function AddPassword() {
 				console.log(payload);
 			}
 
-			const res = authHttpPost(
+			const res = await authHttpPost(
 				"http://127.0.0.1:5000/AddPassword",
 				localStorage.getItem("token"),
 				obj
