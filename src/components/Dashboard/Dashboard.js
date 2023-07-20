@@ -8,7 +8,8 @@ import getPasswords from "../../utils/getPasswords";
 export default function Dashboard() {
 	const [authorized, setAuthorized] = useState(false);
 	const [userData, setUserData] = useState({});
-  const [passwords, setPasswords] = useState({})
+  const [passwords, setPasswords] = useState([])
+  const [websites, setWebsites] = useState([])
 	const navigate = useNavigate();
 
 
@@ -20,13 +21,25 @@ export default function Dashboard() {
     );
     if (payload) {
       setAuthorized(true);
-      setPasswords(payload);
-      console.log(payload);
+      setWebsites(payload[0]);
+      setPasswords(payload[1]);
+      // console.log(payload);
+
     } 
     }
   fecthPasswords();
   }, []);
   
+
+  console.log(passwords)
+  const listWebsite = websites.map((website,i) =>
+    <li>{website}</li>
+  );
+
+  const listPasswords = passwords.map((password,i) =>
+    <li>{password}</li>
+  );
+
 	try {
 		useEffect(() => {
 			const checkAuthorization = async () => {
@@ -61,6 +74,8 @@ export default function Dashboard() {
 	}
   
 
+  
+
 
 	if (!authorized)
 		return (
@@ -73,6 +88,10 @@ export default function Dashboard() {
 		<>
 			<Navbar username={userData.username} />
 			<h2>Dashboard</h2>
+
+      <ul>{listWebsite}</ul>
+      <ul>{listPasswords}</ul>
+      
 			<table>
 				<tbody>
 					<tr>
