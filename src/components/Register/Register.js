@@ -11,12 +11,13 @@ const Register = () => {
 	const navigate = useNavigate();
 	const submitForm = async (e) => {
 		e.preventDefault();
-		const obj = {
-			email: email,
-			username: username,
-			password: password,
-		};
 		try {
+			const obj = {
+				email: email,
+				username: username,
+				password: password,
+			};
+
 			const res = await httpPost("http://127.0.0.1:5000/register", obj);
 			const data = await res.json();
 			setMessage(data.message);

@@ -10,11 +10,12 @@ function Login() {
 	const navigate = useNavigate();
 	const submitForm = async (e) => {
 		e.preventDefault();
-		const obj = {
-			username: username,
-			password: password,
-		};
 		try {
+			const obj = {
+				username: username,
+				password: password,
+			};
+
 			const res = await httpPost("http://127.0.0.1:5000/login", obj);
 			const data = await res.json();
 			setMessage(data.message);

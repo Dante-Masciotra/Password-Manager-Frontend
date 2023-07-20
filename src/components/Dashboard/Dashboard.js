@@ -8,32 +8,37 @@ export default function Dashboard() {
 	const [authorized, setAuthorized] = useState(false);
 	const [userData, setUserData] = useState({});
 	const navigate = useNavigate();
-	useEffect(() => {
-		const checkAuthorization = async () => {
-			const payload = await retrieveUser(
-				localStorage.getItem("token"),
-				localStorage.getItem("refresh")
-			);
-			if (payload) {
-				setAuthorized(true);
-				setUserData(payload);
-				console.log(payload);
-			} else {
-				setAuthorized(false);
-				navigate("/");
-			}
-		};
-		checkAuthorization();
-		const handleStorageChange = () => {
+	try {
+		useEffect(() => {
+			const checkAuthorization = async () => {
+				const payload = await retrieveUser(
+					localStorage.getItem("token"),
+					localStorage.getItem("refresh")
+				);
+				if (payload) {
+					setAuthorized(true);
+					setUserData(payload);
+					console.log(payload);
+				} else {
+					setAuthorized(false);
+					navigate("/");
+				}
+			};
 			checkAuthorization();
-		};
+			const handleStorageChange = () => {
+				checkAuthorization();
+			};
 
-		window.addEventListener("storage", handleStorageChange);
+			window.addEventListener("storage", handleStorageChange);
 
-		return () => {
-			window.removeEventListener("storage", handleStorageChange);
-		};
-	}, [navigate]);
+			return () => {
+				window.removeEventListener("storage", handleStorageChange);
+			};
+		}, [navigate]);
+	} catch (e) {
+		console.log(e);
+		navigate("/");
+	}
 	if (!authorized)
 		return (
 			<>

@@ -13,19 +13,20 @@ function AddPassword() {
 
 	const submitForm = async (e) => {
 		e.preventDefault();
-		const obj = {
-			website: website,
-			password: password,
-		};
-		const payload = await retrieveUser(
-			localStorage.getItem("token"),
-			localStorage.getItem("refresh")
-		);
-		if (payload) {
-			setUserData(payload);
-			console.log(payload);
-		}
 		try {
+			const obj = {
+				website: website,
+				password: password,
+			};
+			const payload = await retrieveUser(
+				localStorage.getItem("token"),
+				localStorage.getItem("refresh")
+			);
+			if (payload) {
+				setUserData(payload);
+				console.log(payload);
+			}
+
 			const res = authHttpPost(
 				"http://127.0.0.1:5000/AddPassword",
 				localStorage.getItem("token"),
@@ -41,6 +42,7 @@ function AddPassword() {
 			}
 		} catch (e) {
 			console.log(e);
+			navigate("/");
 		}
 	};
 	return (
