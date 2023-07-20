@@ -9,7 +9,6 @@ export default function Dashboard() {
 	const [authorized, setAuthorized] = useState(false);
 	const [userData, setUserData] = useState({});
   const [passwords, setPasswords] = useState([])
-  const [websites, setWebsites] = useState([])
 	const navigate = useNavigate();
 
 
@@ -21,9 +20,8 @@ export default function Dashboard() {
     );
     if (payload) {
       setAuthorized(true);
-      setWebsites(payload[0]);
-      setPasswords(payload[1]);
-      // console.log(payload);
+      setPasswords(payload);
+      console.log(payload);
 
     } 
     }
@@ -31,13 +29,12 @@ export default function Dashboard() {
   }, []);
   
 
-  console.log(passwords)
-  const listWebsite = websites.map((website,i) =>
-    <li>{website}</li>
-  );
-
-  const listPasswords = passwords.map((password,i) =>
-    <li>{password}</li>
+  const listPasswords =passwords.slice(0, passwords.length).map((item, index) => 
+      <tr>
+        <td>{item[0]}</td>
+        <td>{item[1]}</td>
+        <td>{item[2]}</td>
+      </tr>
   );
 
 	try {
@@ -89,8 +86,7 @@ export default function Dashboard() {
 			<Navbar username={userData.username} />
 			<h2>Dashboard</h2>
 
-      <ul>{listWebsite}</ul>
-      <ul>{listPasswords}</ul>
+
       
 			<table>
 				<tbody>
@@ -98,10 +94,8 @@ export default function Dashboard() {
 						<th>Website</th>
 						<th>Password</th>
 					</tr>
-					<tr>
-						<td>Sample Data</td>
-						<td>Sample Data</td>
-					</tr>
+          {listPasswords}
+
 				</tbody>
 			</table>
 			<button>
