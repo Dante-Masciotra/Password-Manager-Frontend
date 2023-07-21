@@ -4,7 +4,7 @@ import retrieveUser from "../../utils/retrieveUser";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import getPasswords from "../../utils/getPasswords";
-import EditPw from "../../Buttons/EditPw";
+import EditPw from "../../Menu/EditPw";
 import { authHttpDelete } from "../../utils/httpUtil";
 
 export default function Dashboard() {
@@ -78,7 +78,6 @@ export default function Dashboard() {
 				if (payload) {
 					setAuthorized(true);
 					setUserData(payload);
-					// console.log(payload);
 				} else {
 					setAuthorized(false);
 					navigate("/");
