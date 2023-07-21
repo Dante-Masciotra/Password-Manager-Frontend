@@ -4,7 +4,7 @@ import retrieveUser from "../../utils/retrieveUser";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import getPasswords from "../../utils/getPasswords";
-import EditPw from "../../menu/EditPw";
+import EditPw from "../../Menu/EditPw";
 import { authHttpDelete } from "../../utils/httpUtil";
 
 export default function Dashboard() {
