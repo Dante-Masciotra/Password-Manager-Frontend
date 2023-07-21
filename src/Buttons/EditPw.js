@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { authHttpPut } from "../utils/httpUtil";
 
-const EditPw = ({ website, oldPassword, setEditing }) => {
+const EditPw = ({ website, oldPassword, setEditing, update, setUpdate }) => {
 	const [password, setPassword] = useState("");
 	const handleEdit = async () => {
 		const obj = {
@@ -14,8 +14,8 @@ const EditPw = ({ website, oldPassword, setEditing }) => {
 				localStorage.getItem("token"),
 				obj
 			);
-			const data = res.json();
 			if (res.ok) {
+				setUpdate(!update);
 				setEditing(false);
 			}
 		} catch (e) {
