@@ -4,7 +4,7 @@ import retrieveUser from "../../utils/retrieveUser";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import getPasswords from "../../utils/getPasswords";
-import EditPw from "../../Menu/EditPw";
+import EditPw from "../../menu/EditPw";
 import { authHttpDelete } from "../../utils/httpUtil";
 
 export default function Dashboard() {
@@ -17,7 +17,7 @@ export default function Dashboard() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		async function fecthPasswords() {
+		async function fetchPasswords() {
 			const payload = await getPasswords(
 				localStorage.getItem("token"),
 				localStorage.getItem("refresh")
@@ -28,7 +28,7 @@ export default function Dashboard() {
 				console.log(payload);
 			}
 		}
-		fecthPasswords();
+		fetchPasswords();
 	}, [update]);
 
 	const handleEdit = (item) => {
@@ -56,17 +56,17 @@ export default function Dashboard() {
 
 	const [passwordVisibility, setPasswordVisibility] = useState(
 		new Array(passwords.length).fill(false)
-	  );
+	);
 	const togglePasswordVisibility = (index) => {
 		setPasswordVisibility((prevVisibility) => {
-		  const newVisibility = [...prevVisibility];
-		  newVisibility[index] = !newVisibility[index];
-		  return newVisibility;
+			const newVisibility = [...prevVisibility];
+			newVisibility[index] = !newVisibility[index];
+			return newVisibility;
 		});
-	  };
+	};
 
 	const copyToClipboard = (password) => {
-		navigator.clipboard.writeText(password)
+		navigator.clipboard.writeText(password);
 	};
 
 	const listPasswords = passwords
@@ -75,13 +75,15 @@ export default function Dashboard() {
 			<tr>
 				<td>{item[0]}</td>
 				<td>
-					<div className={passwordVisibility[index] ? 'show' : 'hide'}>
-          				{item[1]}
-        			</div>
+					<div className={passwordVisibility[index] ? "show" : "hide"}>
+						{item[1]}
+					</div>
 					<button onClick={() => togglePasswordVisibility(index)}>
-          					{passwordVisibility[index] ? 'Hide password' : 'Show password'}
-        			</button>
-					<button onClick={() => copyToClipboard(item[1])}>Copy to Clipboard</button>
+						{passwordVisibility[index] ? "Hide password" : "Show password"}
+					</button>
+					<button onClick={() => copyToClipboard(item[1])}>
+						Copy to Clipboard
+					</button>
 				</td>
 				<td>
 					<button onClick={() => handleEdit(item)}>Edit</button>
@@ -90,9 +92,6 @@ export default function Dashboard() {
 				{/* {console.log("index: "+index)} */}
 			</tr>
 		));
-
-
-	
 
 	try {
 		useEffect(() => {
