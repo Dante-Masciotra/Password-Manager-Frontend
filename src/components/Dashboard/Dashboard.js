@@ -54,19 +54,45 @@ export default function Dashboard() {
 		}
 	};
 
+	const [passwordVisibility, setPasswordVisibility] = useState(
+		new Array(passwords.length).fill(false)
+	  );
+	const togglePasswordVisibility = (index) => {
+		setPasswordVisibility((prevVisibility) => {
+		  const newVisibility = [...prevVisibility];
+		  newVisibility[index] = !newVisibility[index];
+		  return newVisibility;
+		});
+	  };
+
+	const copyToClipboard = (password) => {
+		navigator.clipboard.writeText(password)
+	};
+
 	const listPasswords = passwords
 		.slice(0, passwords.length)
 		.map((item, index) => (
 			<tr>
 				<td>{item[0]}</td>
-				<td>{item[1]}</td>
+				<td>
+					<div className={passwordVisibility[index] ? 'show' : 'hide'}>
+          				{item[1]}
+        			</div>
+					<button onClick={() => togglePasswordVisibility(index)}>
+          					{passwordVisibility[index] ? 'Hide password' : 'Show password'}
+        			</button>
+					<button onClick={() => copyToClipboard(item[1])}>Copy to Clipboard</button>
+				</td>
 				<td>
 					<button onClick={() => handleEdit(item)}>Edit</button>
 					<button onClick={() => handleDelete(item)}>Delete</button>
 				</td>
-				{console.log(item)}
+				{/* {console.log("index: "+index)} */}
 			</tr>
 		));
+
+
+	
 
 	try {
 		useEffect(() => {

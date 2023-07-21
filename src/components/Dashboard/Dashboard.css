@@ -1,3 +1,7 @@
 table{
     margin: auto;
 }
+
+.hide{
+    -webkit-text-security: disc
+}
