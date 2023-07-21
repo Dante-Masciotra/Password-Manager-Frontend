@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import getPasswords from "../../utils/getPasswords";
 import EditPw from "../../Buttons/EditPw";
+import { authHttpDelete } from "../../utils/httpUtil";
 
 export default function Dashboard() {
 	const [authorized, setAuthorized] = useState(false);
@@ -12,6 +13,7 @@ export default function Dashboard() {
 	const [passwords, setPasswords] = useState([]);
 	const [editing, setEditing] = useState(false);
 	const [props, setProps] = useState();
+	const [update, setUpdate] = useState(false);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -27,16 +29,29 @@ export default function Dashboard() {
 			}
 		}
 		fecthPasswords();
-	}, []);
+	}, [update]);
 
 	const handleEdit = (item) => {
 		const obj = {
 			website: item[0],
 			password: item[1],
 			setEditing: setEditing,
+			update: update,
+			setUpdate: setUpdate,
 		};
 		setProps(obj);
 		setEditing(true);
+	};
+
+	const handleDelete = async (item) => {
+		console.log(item[0]);
+		const res = await authHttpDelete(
+			`http://127.0.0.1:5000/deletepassword/${item[0]}`,
+			localStorage.getItem("token")
+		);
+		if (res.ok) {
+			setUpdate(!update);
+		}
 	};
 
 	const listPasswords = passwords
@@ -47,6 +62,7 @@ export default function Dashboard() {
 				<td>{item[1]}</td>
 				<td>
 					<button onClick={() => handleEdit(item)}>Edit</button>
+					<button onClick={() => handleDelete(item)}>Delete</button>
 				</td>
 				{console.log(item)}
 			</tr>
