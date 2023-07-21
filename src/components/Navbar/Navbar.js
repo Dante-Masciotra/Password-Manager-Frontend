@@ -14,6 +14,8 @@ const Navbar = ({ username }) => {
 		<>
 			<div className="NavWrapper">
 				<h2>Hello {username}</h2>
+				<button ><a href="../Dashboard">Home</a></button>
+				<button ><a href="../GradePassword">Password Grader</a></button>
 				<button onClick={logout}>Log Out</button>
 			</div>
 		</>
