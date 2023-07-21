@@ -93,3 +93,35 @@ export const authHttpPut = async (url, token, body) => {
 		console.log(e);
 	}
 };
+
+export const httpDelete = async (url) => {
+	try {
+		const res = await fetch(url, {
+			method: "DELETE",
+			headers: {
+				"content-type": "application/json",
+			},
+		});
+		return res;
+	} catch (e) {
+		console.log(e);
+	}
+};
+
+export const authHttpDelete = async (url, token) => {
+	try {
+		if (isExpired(token)) {
+			await refreshTokens(localStorage.getItem("refresh"));
+		}
+		const res = await fetch(url, {
+			method: "DELETE",
+			headers: {
+				"content-type": "application/json",
+				"x-access-token": token,
+			},
+		});
+		return res;
+	} catch (e) {
+		console.log(e);
+	}
+};
