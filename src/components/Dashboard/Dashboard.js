@@ -6,6 +6,11 @@ import Navbar from "../Navbar/Navbar";
 import getPasswords from "../../utils/getPasswords";
 import EditPw from "../../Menu/EditPw";
 import { authHttpDelete } from "../../utils/httpUtil";
+import {Icon} from 'react-icons-kit';
+import {eyeOff} from 'react-icons-kit/feather/eyeOff';
+import {eye} from 'react-icons-kit/feather/eye'
+import {copy} from 'react-icons-kit/feather/copy'
+
 
 export default function Dashboard() {
 	const [authorized, setAuthorized] = useState(false);
@@ -79,10 +84,10 @@ export default function Dashboard() {
 						{item[1]}
 					</div>
 					<button onClick={() => togglePasswordVisibility(index)}>
-						{passwordVisibility[index] ? "Hide password" : "Show password"}
+						{passwordVisibility[index] ?<Icon class="absolute mr-10" icon={eyeOff} size={25}/> : <Icon class="absolute mr-10" icon={eye} size={25}/>}
 					</button>
 					<button onClick={() => copyToClipboard(item[1])}>
-						Copy to Clipboard
+					<Icon class="absolute mr-10" icon={copy} size={25}/> 
 					</button>
 				</td>
 				<td>
