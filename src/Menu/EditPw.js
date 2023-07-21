@@ -3,7 +3,8 @@ import { authHttpPut } from "../utils/httpUtil";
 
 const EditPw = ({ website, oldPassword, setEditing, update, setUpdate }) => {
 	const [password, setPassword] = useState("");
-	const handleEdit = async () => {
+	const handleEdit = async (e) => {
+		e.preventDefault();
 		const obj = {
 			website: website,
 			password: password,
