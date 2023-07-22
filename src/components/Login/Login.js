@@ -56,10 +56,6 @@ function Login() {
 						<div className="main-error">{message && <p>{message}</p>}</div>
 						<input className="main-button" type="submit" value="Login" />
 						<br />
-						<a href="http://localhost:3000/dashboard">
-							Temp button to go to dashboard
-						</a>
-						.
 					</form>
 				</div>
 				<div className="register">
