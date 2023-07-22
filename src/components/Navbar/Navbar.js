@@ -1,11 +1,13 @@
 import "./Navbar.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {logOut} from 'react-icons-kit/feather/logOut'
+import {Icon} from 'react-icons-kit';
 
 const Navbar = ({ username }) => {
 	const navigate = useNavigate();
 
-	const logout = () => {
+	const logoutFun = () => {
 		localStorage.clear();
 		navigate("/");
 	};
@@ -13,10 +15,17 @@ const Navbar = ({ username }) => {
 	return (
 		<>
 			<div className="NavWrapper">
-				<h2>Hello {username}</h2>
-				<button ><a href="../Dashboard">Home</a></button>
-				<button ><a href="../GradePassword">Password Grader</a></button>
-				<button onClick={logout}>Log Out</button>
+				<div className="Welcome-Message">
+						<img src={require("../../imgs/logo-black.png")} alt="" />
+						<h2>Hello {username}</h2>
+				</div>
+				<ul className="NavButtons">
+					<li><a href="../Dashboard">Home</a></li>
+					<li><a href="../GradePassword">Password Grader</a></li>
+				</ul>
+				<div className="logout" >
+				<Icon className="icon" onClick={logoutFun} icon={logOut} size={25}/>
+				</div>
 			</div>
 		</>
 	);

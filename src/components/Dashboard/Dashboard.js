@@ -84,10 +84,10 @@ export default function Dashboard() {
 						{item[1]}
 					</div>
 					<button onClick={() => togglePasswordVisibility(index)}>
-						{passwordVisibility[index] ?<Icon class="absolute mr-10" icon={eyeOff} size={25}/> : <Icon class="absolute mr-10" icon={eye} size={25}/>}
+						{passwordVisibility[index] ?<Icon icon={eyeOff} size={25}/> : <Icon icon={eye} size={25}/>}
 					</button>
 					<button onClick={() => copyToClipboard(item[1])}>
-					<Icon class="absolute mr-10" icon={copy} size={25}/> 
+					<Icon icon={copy} size={25}/> 
 					</button>
 				</td>
 				<td>

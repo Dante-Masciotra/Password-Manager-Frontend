@@ -34,7 +34,7 @@ function Login() {
 			<div className="main-wrapper">
 				<div className="main-container">
 					<div className="main-title">
-						<img src={require("./logo-black.png")} alt="" />
+						<img src={require("../../imgs/logo-black.png")} alt="" />
 						<h1>LOGIN</h1>
 					</div>
 					<form onSubmit={submitForm}>
