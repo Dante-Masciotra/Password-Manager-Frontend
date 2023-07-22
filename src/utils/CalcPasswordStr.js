@@ -7,10 +7,34 @@ const CalcPasswordStr = (password) => {
     // Regular expressions
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
-    const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
+    const hasSpecialChar = /[!@#$%^&?]/.test(password);
     const hasNumbers = /\d/.test(password);
-
+    
     let strengthScore = 0;
+
+
+    // Score reduction of 2 for common password sequence
+    var commonFlag=true;
+    for (let i = 0; i < password.length; i++) {
+        if(commonFlag){
+            if(/[A-Z]/.test(password[i]) && (/[a-z]/.test(password[i+1]) || /[A-Z]/.test(password[i+1]))){
+                commonFlag=true;
+            }else if(/[a-z]/.test(password[i]) && (/[a-z]/.test(password[i+1]) || /\d/.test(password[i+1]) )){
+                commonFlag=true;
+            }else if(/\d/.test(password[i]) && (/\d/.test(password[i+1]) || /[!@#$%^&*?]/.test(password[i+1]) )){
+                commonFlag=true;
+            }else if(/[!@#$%^&*?]/.test(password[i]) && (i+2>password.length||/[!@#$%^&*?]/.test(password[i+1])) ){
+                commonFlag=true;
+            }else{
+                commonFlag=false
+            }
+        }
+      }
+
+    if(commonFlag){
+        strengthScore -= 2;
+        console.log("hit5")
+    }
 
     // Score for having 13 or more characters
     if (password.length >= 13) {
