@@ -1,3 +1,4 @@
+import "./PasswordTable.css";
 import React, { useEffect, useState } from 'react'
 import getPasswords from "../../utils/getPasswords";
 import EditPw from "../../Menu/EditPw";
@@ -6,12 +7,15 @@ import {Icon} from 'react-icons-kit';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff';
 import {eye} from 'react-icons-kit/feather/eye'
 import {copy} from 'react-icons-kit/feather/copy'
+import {trash2} from 'react-icons-kit/feather/trash2'
+import {edit} from 'react-icons-kit/feather/edit'
+import {plusSquare} from 'react-icons-kit/feather/plusSquare'
+
 function PasswordTable() {
     const [passwords, setPasswords] = useState([]);
 	const [editing, setEditing] = useState(false);
 	const [props, setProps] = useState();
 	const [update, setUpdate] = useState(false);
-	const [authorized, setAuthorized] = useState(false);
 
     useEffect(() => {
 		async function fetchPasswords() {
@@ -20,7 +24,6 @@ function PasswordTable() {
 				localStorage.getItem("refresh")
 			);
 			if (payload) {
-				setAuthorized(true);
 				setPasswords(payload);
 				console.log(payload);
 			}
@@ -82,9 +85,9 @@ function PasswordTable() {
 					<Icon icon={copy} size={25}/> 
 					</button>
 				</td>
-				<td>
-					<button onClick={() => handleEdit(item)}>Edit</button>
-					<button onClick={() => handleDelete(item)}>Delete</button>
+				<td className='deleteEdit'>
+					<button className='edit' onClick={() => handleEdit(item)}><Icon icon={edit} size={25}/> </button>
+					<button className='delete' onClick={() => handleDelete(item)}><Icon icon={trash2} size={25}/> </button>
 				</td>
 				{/* {console.log("index: "+index)} */}
 			</tr>
@@ -98,18 +101,20 @@ function PasswordTable() {
 		);
   return (
     <>
-    <table>
-					<tbody>
-						<tr>
-							<th>Website</th>
-							<th>Password</th>
-						</tr>
-						{listPasswords}
-					</tbody>
-				</table>
-				<button>
-					<a href="http://localhost:3000/AddPassword"> +</a>
-				</button>
+    <div className="PasswordWrapper">
+        <table className="Passwords">
+            <tbody>
+                <tr>
+                    <th><h2>Website</h2></th>
+                    <th><h2>Password</h2></th>
+                </tr>
+                {listPasswords}
+            </tbody>
+        </table>
+        <button>
+            <a href="http://localhost:3000/AddPassword"><Icon icon={plusSquare} size={25}/></a>
+        </button>
+        </div>
     </>
   )
 }

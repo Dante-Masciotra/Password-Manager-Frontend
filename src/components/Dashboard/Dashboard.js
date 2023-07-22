@@ -52,9 +52,14 @@ export default function Dashboard() {
 	return (
 		<>
 			<Navbar username={userData.username} />
-			<div>
-				<h2>Dashboard</h2>
-				<PasswordTable />
+			<div className="main-wrapper">
+				<div className="main-container">
+					<div className="main-title">
+						<img src={require("../../imgs/logo-black.png")} alt="" />
+						<h1>DASHBOARD</h1>
+					</div>
+					<PasswordTable />
+				</div>
 			</div>
 		</>
 	);

@@ -1,14 +1,12 @@
 import "./AddPassword.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import retrieveUser from "../../utils/retrieveUser";
 import { authHttpPost } from "../../utils/httpUtil";
 
 function AddPassword() {
 	const [website, setWebsite] = useState("");
 	const [password, setPassword] = useState("");
 	const [message, setMessage] = useState("");
-	const [userData, setUserData] = useState({});
 	const navigate = useNavigate();
 
 	const submitForm = async (e) => {
@@ -18,14 +16,6 @@ function AddPassword() {
 				website: website,
 				password: password,
 			};
-			const payload = await retrieveUser(
-				localStorage.getItem("token"),
-				localStorage.getItem("refresh")
-			);
-			if (payload) {
-				setUserData(payload);
-				console.log(payload);
-			}
 
 			const res = await authHttpPost(
 				"http://127.0.0.1:5000/AddPassword",
