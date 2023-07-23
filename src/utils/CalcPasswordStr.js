@@ -33,13 +33,17 @@ const CalcPasswordStr = (password) => {
 
     if(commonFlag){
         strengthScore -= 2;
-        console.log("hit5")
     }
 
     // Score for having 13 or more characters
     if (password.length >= 13) {
     strengthScore += 1;
     }
+
+    // Score reduction for less than 13
+    if (password.length < 13) {
+        strengthScore -= 1;
+        }
 
     // Score for having capital letters
     if (hasUppercase) {

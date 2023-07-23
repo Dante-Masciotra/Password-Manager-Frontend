@@ -21,7 +21,7 @@ const Navbar = ({ username }) => {
 				</div>
 				<ul className="NavButtons">
 					<li><a href="../Dashboard">Home</a></li>
-					<li><a href="../GradePassword">Password Grader</a></li>
+					<li><a href="../GradePassword">Grade Password</a></li>
 				</ul>
 				<div className="logout" >
 				<Icon className="icon" onClick={logoutFun} icon={logOut} size={25}/>

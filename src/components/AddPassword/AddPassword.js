@@ -1,13 +1,56 @@
 import "./AddPassword.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authHttpPost } from "../../utils/httpUtil";
+import Navbar from "../Navbar/Navbar";
+import retrieveUser from "../../utils/retrieveUser";
+import {Icon} from 'react-icons-kit';
+import { plusSquare } from "react-icons-kit/feather/plusSquare";
 
 function AddPassword() {
 	const [website, setWebsite] = useState("");
 	const [password, setPassword] = useState("");
 	const [message, setMessage] = useState("");
+	const [authorized, setAuthorized] = useState(false);
+	const [userData, setUserData] = useState({});
 	const navigate = useNavigate();
+
+	try {
+		useEffect(() => {
+			const checkAuthorization = async () => {
+				const payload = await retrieveUser(
+					localStorage.getItem("token"),
+					localStorage.getItem("refresh")
+				);
+				if (payload) {
+					setAuthorized(true);
+					setUserData(payload);
+				} else {
+					navigate("/");
+				}
+			};
+			checkAuthorization();
+			const handleStorageChange = () => {
+				checkAuthorization();
+			};
+
+			window.addEventListener("storage", handleStorageChange);
+
+			return () => {
+				window.removeEventListener("storage", handleStorageChange);
+			};
+		}, [navigate]);
+	} catch (e) {
+		console.log(e);
+		navigate("/");
+	}
+	if (!authorized)
+		return (
+			<>
+				<div>Session expired</div>
+			</>
+		);
+
 
 	const submitForm = async (e) => {
 		e.preventDefault();
@@ -27,8 +70,6 @@ function AddPassword() {
 			if (res.ok) {
 				setMessage("");
 				navigate("/dashboard");
-			} else {
-				navigate("/");
 			}
 		} catch (e) {
 			console.log(e);
@@ -37,31 +78,36 @@ function AddPassword() {
 	};
 	return (
 		<>
-			<form onSubmit={submitForm}>
-				<input
-					type="text"
-					id="Website"
-					name="Website"
-					placeholder="Website"
-					onChange={(e) => setWebsite(e.target.value)}
-				/>
-				<br />
-				<input
-					type="password"
-					id="password"
-					name="password"
-					placeholder="Password"
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-				<br />
-				<input className="add-button" type="submit" value="Add" />
-				<br />
-				<a href="http://localhost:3000/dashboard">
-					Temp button to go to dashboard
-				</a>
-				.
-			</form>
-			<div>{message && <p>{message}</p>}</div>
+			<Navbar username={userData.username} />
+			<div className="main-wrapper">
+				<div className="main-container">
+					<div className="main-title">
+						<img src={require("../../imgs/logo-black.png")} alt="" />
+						<h1>Add Password</h1>
+					</div>
+					<form onSubmit={submitForm}>
+						<input
+							type="text"
+							id="Website"
+							name="Website"
+							placeholder="Website"
+							onChange={(e) => setWebsite(e.target.value)}
+						/>
+						<br />
+						<input
+							type="password"
+							id="password"
+							name="password"
+							placeholder="Password"
+							onChange={(e) => setPassword(e.target.value)}
+						/>
+						<br />
+						<button className="add-button" type="submit"><Icon icon={plusSquare} size={40}/></button>
+						<br />
+					</form>
+					<div className="main-error">{message && <p>{message}</p>}</div>
+				</div>
+			</div>
 		</>
 	);
 }

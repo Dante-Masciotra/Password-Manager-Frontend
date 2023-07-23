@@ -51,7 +51,6 @@ if (!authorized)
         </>
     );
 
-
 // handle Password change
   const handlePasswordChange = (event) => {
     const newPassword = event.target.value;
@@ -60,19 +59,40 @@ if (!authorized)
   };
 
   //width of password grade
+  const getStrengthBarColor = () => {
+    if (score >= 4) {
+      return "green"; // Strong password
+    } else if (score >= 2) {
+      return "gold"; // Moderate password
+    } else {
+      return "red"; // Weak password
+    }
+  };
   const strengthBarWidth = (score / 5) * 100;
+  const strengthBarColor = getStrengthBarColor();
 
   return (
     <>
 	    <Navbar username={userData.username} />
-        <h2>Password Grade</h2>
-        <label>
-            Enter your password:
-            <input type="text" value={password} onChange={handlePasswordChange} />
-        </label>
-        <div className="strength-bar-container">
-            <div className="strength-bar" style={{ width: `${strengthBarWidth}%` }} />
+        <div className="main-wrapper">
+				<div className="main-container">
+                    <div className="main-title">
+						<img src={require("../../imgs/logo-black.png")} alt="" />
+						<h1>Grade Password</h1>
+					</div>
+                    <br/>
+                    <br/>
+                    <input type="text" placeholder="Enter Password" value={password} onChange={handlePasswordChange} />
+                    <br/>
+                    <div className="strength-bar-container">
+                    <div
+                    className="strength-bar"
+                    style={{ width: `${strengthBarWidth}%`, background: strengthBarColor }}
+                    />
+                </div>
+            </div>
         </div>
+            
     </>
   );
 };
