@@ -78,16 +78,13 @@ function PasswordTable() {
 					<div className={passwordVisibility[index] ? "show" : "hide"}>
 						{item[1]}
 					</div>
-					<button onClick={() => togglePasswordVisibility(index)}>
-						{passwordVisibility[index] ?<Icon icon={eyeOff} size={25}/> : <Icon icon={eye} size={25}/>}
-					</button>
-					<button onClick={() => copyToClipboard(item[1])}>
-					<Icon icon={copy} size={25}/> 
-					</button>
+					
 				</td>
 				<td className='deleteEdit'>
 					<button className='edit' onClick={() => handleEdit(item)}><Icon icon={edit} size={25}/> </button>
 					<button className='delete' onClick={() => handleDelete(item)}><Icon icon={trash2} size={25}/> </button>
+                    <button onClick={() => togglePasswordVisibility(index)}>{passwordVisibility[index] ?<Icon icon={eyeOff} size={25}/> : <Icon icon={eye} size={25}/>} </button>
+					<button onClick={() => copyToClipboard(item[1])}><Icon icon={copy} size={25}/> </button>
 				</td>
 				{/* {console.log("index: "+index)} */}
 			</tr>

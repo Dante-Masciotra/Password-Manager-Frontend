@@ -79,11 +79,11 @@ function AddPassword() {
 	return (
 		<>
 			<Navbar username={userData.username} />
-			<div className="main-wrapper">
-				<div className="main-container">
+			<div className="main-wrapper ">
+				<div className="main-container addPassword">
 					<div className="main-title">
 						<img src={require("../../imgs/logo-black.png")} alt="" />
-						<h1>Add Password</h1>
+						<h1>ADD PASSWORD</h1>
 					</div>
 					<form onSubmit={submitForm}>
 						<input

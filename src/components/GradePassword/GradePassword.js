@@ -75,10 +75,10 @@ if (!authorized)
     <>
 	    <Navbar username={userData.username} />
         <div className="main-wrapper">
-				<div className="main-container">
+				<div className="main-container gradePassword">
                     <div className="main-title">
 						<img src={require("../../imgs/logo-black.png")} alt="" />
-						<h1>Grade Password</h1>
+						<h1>GRADE PASSWORD</h1>
 					</div>
                     <br/>
                     <br/>
