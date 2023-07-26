@@ -54,7 +54,7 @@ export default function Dashboard() {
 			<Navbar username={userData.username} />
 			<div className="main-wrapper">
 				<div className="main-container">
-					<div className="main-title">
+					<div className="main-title dashboard-title">
 						<img src={require("../../imgs/logo-black.png")} alt="" />
 						<h1>DASHBOARD</h1>
 					</div>

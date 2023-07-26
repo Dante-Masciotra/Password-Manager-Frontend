@@ -28,19 +28,19 @@ const EditPw = ({ website, oldPassword, setEditing, update, setUpdate }) => {
 		<>
 			<h2>Edit Password</h2>
 			<p>Website: {website}</p>
-			<br />
-			<p>New password:</p>
 			<form onSubmit={handleEdit}>
 				<input
 					type="password"
 					id="password"
 					name="password"
-					placeholder="Password"
+					placeholder="New Password"
 					onChange={(e) => setPassword(e.target.value)}
 				/>
-				<input type="submit" value="Save" />
+				<br />
+				<input className= "edit-pass-button" type="submit" value="Save" />
+				<button id="edit-cancel-button" className="edit-pass-button" onClick={() => setEditing(false)}>Cancel</button>
 			</form>
-			<button onClick={() => setEditing(false)}>Cancel</button>
+			
 		</>
 	);
 };

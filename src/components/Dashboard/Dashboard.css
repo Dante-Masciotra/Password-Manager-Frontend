@@ -1,7 +1,51 @@
-table{
+table {
     margin: auto;
 }
 
-.hide{
-    -webkit-text-security: disc
+.hide {
+    -webkit-text-security: disc;
+}
+
+/* ------------- Mobile Phone ------------- */
+
+@media only screen and (max-width: 1610px) {
+    .dashboard-title h1 {
+        font-size: 230%;
+    }
+}
+
+@media only screen and (max-width: 1245px) {
+    .dashboard-title h1 {
+        font-size: 190%;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    .dashboard-title h1 {
+        font-size: 300%;
+    }
+}
+
+/* ------------- Edit Password ------------- */
+
+.edit-pass-button {
+    /* font-size: 100%; */
+    background-color: #282C34;
+    border-color: #282C34 !important;
+    border-radius: 20px 5px 20px 5px !important;
+    padding: 10px !important;
+    color: white;
+    border: solid 2px black;
+    transition: all .2s ease-in-out; 
+}
+
+#edit-cancel-button {
+    font-size: 15px;
+}
+
+.edit-pass-button:hover {
+    cursor: pointer;
+    transform: scale(1.1) rotate(2deg);
+    background: #3b414e;
+    border-color: #3b414e !important;
 }

@@ -33,7 +33,7 @@ const Register = () => {
 		<>
 			<div className="main-wrapper">
 				<div className="main-container">
-					<div className="main-title">
+					<div className="main-title register-title">
 						<img src={require("./logo-black.png")} alt="" />
 						<h1>REGISTER</h1>
 					</div>
