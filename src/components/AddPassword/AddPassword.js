@@ -102,7 +102,10 @@ function AddPassword() {
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 						<br />
-						<button className="add-button" type="submit"><Icon icon={plusSquare} size={40}/></button>
+						<div id="add-pass-options" className="register">
+							<button className="add-button" type="submit"><Icon icon={plusSquare} size={40}/></button>
+							<a href="http://localhost:3000/Dashboard">Cancel</a>
+						</div>
 						<br />
 					</form>
 					<div className="main-error">{message && <p>{message}</p>}</div>

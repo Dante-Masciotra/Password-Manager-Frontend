@@ -37,7 +37,7 @@ const EditPw = ({ website, oldPassword, setEditing, update, setUpdate }) => {
 					onChange={(e) => setPassword(e.target.value)}
 				/>
 				<br />
-				<input className= "edit-pass-button" type="submit" value="Save" />
+				<input id= "edit-pass-save" className= "edit-pass-button" type="submit" value="Save" />
 				<button id="edit-cancel-button" className="edit-pass-button" onClick={() => setEditing(false)}>Cancel</button>
 			</form>
 			
