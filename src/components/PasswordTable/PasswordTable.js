@@ -10,10 +10,12 @@ import {copy} from 'react-icons-kit/feather/copy'
 import {trash2} from 'react-icons-kit/feather/trash2'
 import {edit} from 'react-icons-kit/feather/edit'
 import {plusSquare} from 'react-icons-kit/feather/plusSquare'
+import AddPassword from "../AddPassword/AddPassword";
 
 function PasswordTable() {
     const [passwords, setPasswords] = useState([]);
 	const [editing, setEditing] = useState(false);
+	const [adding, setAdding] = useState(false);
 	const [props, setProps] = useState();
 	const [update, setUpdate] = useState(false);
 
@@ -30,6 +32,15 @@ function PasswordTable() {
 		}
 		fetchPasswords();
 	}, [update]);
+
+
+	const handleAdd = () => {
+		const obj = {
+			setAdding: setAdding,
+		};
+		setProps(obj);
+		setAdding(true);
+	}
 
 	const handleEdit = (item) => {
 		const obj = {
@@ -96,6 +107,13 @@ function PasswordTable() {
 				<EditPw {...props} />
 			</>
 		);
+	if(adding){
+		return(
+			<>
+				<AddPassword {...props} />
+			</>
+		);
+	}
   return (
     <>
     <div className="PasswordWrapper">
@@ -108,8 +126,8 @@ function PasswordTable() {
                 {listPasswords}
             </tbody>
         </table>
-        <button>
-            <a href="http://localhost:3000/AddPassword"><Icon icon={plusSquare} size={25}/></a>
+        <button onClick={handleAdd}>
+            <Icon icon={plusSquare} size={25}/>
         </button>
         </div>
     </>
