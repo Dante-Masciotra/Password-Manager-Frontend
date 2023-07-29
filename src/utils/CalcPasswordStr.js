@@ -1,7 +1,13 @@
 
 const CalcPasswordStr = (password) => {
-    if (!password || password.length < 8) {
+    if (!password) {
       return 0; // Return 0 when the password is less than 8 characters
+    }
+
+
+    //return extreme small value if password is not at least 8
+    if(password.length < 8){
+        return 0.1
     }
 
     // Regular expressions

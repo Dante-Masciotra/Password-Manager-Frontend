@@ -58,17 +58,19 @@ if (!authorized)
     setScore(CalcPasswordStr(newPassword));
   };
 
+  let strengthBarWidth=0;
   //width of password grade
   const getStrengthBarColor = () => {
+    strengthBarWidth = (score / 5) * 100;
     if (score >= 4) {
       return "green"; // Strong password
     } else if (score >= 2) {
       return "gold"; // Moderate password
-    } else {
+  } else {
       return "red"; // Weak password
     }
   };
-  const strengthBarWidth = (score / 5) * 100;
+
   const strengthBarColor = getStrengthBarColor();
 
   return (
@@ -83,6 +85,13 @@ if (!authorized)
                     <br/>
                     <br/>
                     <input type="text" placeholder="Enter Password" value={password} onChange={handlePasswordChange} />
+                    <ul className="recommendations">
+                      <li>13 characters at least</li>
+                      <li>2 Numbers</li>
+                      <li>Upper and lowercase</li>
+                      <li>Speical Character</li>
+                      <li>Don't have charaters in <i>ABCabc123!@#</i> order</li>
+                    </ul>
                     <br/>
                     <div className="strength-bar-container">
                     <div
